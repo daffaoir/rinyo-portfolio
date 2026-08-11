@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daffario Alexandra — Coming Soon</title>
   <meta name="description" content="Daffario Alexandra's portfolio is under construction. Check back soon." />
-  <meta name="theme-color" content="#08080c" />
+  <meta name="theme-color" content="#0b0714" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://daffario.dev" />
@@ -98,11 +98,10 @@
       type();
     }
 
-    const prefersFinePointer = window.matchMedia("(pointer: fine)").matches;
-    if (prefersFinePointer && !prefersReducedMotion) {
+    if (!prefersReducedMotion) {
       const glowWrap = document.querySelector(".glow-wrap");
-      const MAX_OFFSET = 40;
-      document.addEventListener("mousemove", (e) => {
+      const MAX_OFFSET = 90;
+      window.addEventListener("mousemove", (e) => {
         const x = (e.clientX / window.innerWidth - 0.5) * 2 * MAX_OFFSET;
         const y = (e.clientY / window.innerHeight - 0.5) * 2 * MAX_OFFSET;
         glowWrap.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
