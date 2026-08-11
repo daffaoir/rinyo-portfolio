@@ -5,11 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daffario Alexandra — Coming Soon</title>
   <meta name="description" content="Daffario Alexandra's portfolio is under construction. Check back soon." />
+  <meta name="theme-color" content="#08080c" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://daffario.dev" />
+  <meta property="og:title" content="Daffario Alexandra — Coming Soon" />
+  <meta property="og:description" content="Daffario Alexandra's portfolio is under construction. Check back soon." />
+  <meta property="og:image" content="https://daffario.dev/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Daffario Alexandra — Coming Soon" />
+  <meta name="twitter:description" content="Daffario Alexandra's portfolio is under construction. Check back soon." />
+  <meta name="twitter:image" content="https://daffario.dev/og-image.png" />
+
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="glow"></div>
+  <div class="glow-wrap">
+    <div class="glow"></div>
+  </div>
 
   <main class="container">
     <h1><span id="typed"></span><span class="cursor">_</span></h1>
@@ -76,6 +96,17 @@
       }
 
       type();
+    }
+
+    const prefersFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (prefersFinePointer && !prefersReducedMotion) {
+      const glowWrap = document.querySelector(".glow-wrap");
+      const MAX_OFFSET = 40;
+      document.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2 * MAX_OFFSET;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2 * MAX_OFFSET;
+        glowWrap.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+      });
     }
   </script>
 </body>
