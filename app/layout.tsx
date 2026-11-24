@@ -1,14 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Instrument_Sans } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import { profile } from "@/lib/content";
+import { Clock, Enhancements, ThemeToggle } from "./interactive";
 
-const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display", axes: ["wdth"] });
-const body = Instrument_Sans({ subsets: ["latin"], variable: "--font-body" });
+const sans = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 const description =
-  "Daffario Alexandra builds and runs internal systems, automations and practical AI for tourism businesses.";
+  "Daffario Alexandra builds internal tools, integrations and practical AI for small businesses in tourism and hospitality.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://daffario.dev"),
@@ -27,29 +28,38 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#eef2ee" },
-    { media: "(prefers-color-scheme: dark)", color: "#111c17" },
+    { media: "(prefers-color-scheme: light)", color: "#fbfbfa" },
+    { media: "(prefers-color-scheme: dark)", color: "#111214" },
   ],
 };
 
+// Applies a saved theme before first paint, so there is no flash of the wrong theme.
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <a className="skip" href="#main">Skip to content</a>
-        <header className="wrap top">
-          <Link href="/" className="brand">{profile.name}</Link>
-          <nav className="nav" aria-label="Main">
-            <Link href="/#work">Work</Link>
-            <Link href="/#experience">Experience</Link>
-            <Link href="/cv">CV</Link>
-            <Link href="/#contact">Contact</Link>
+        <div className="page">
+          <nav className="top" aria-label="Main">
+            <Link href="/" className="brand">daffario.dev <Clock /></Link>
+            <div className="links">
+              <Link href="/#work">Work</Link>
+              <Link href="/#experience">Experience</Link>
+              <Link href="/cv">CV</Link>
+              <ThemeToggle />
+            </div>
           </nav>
-        </header>
-        <main id="main">{children}</main>
-        <footer className="wrap">
-          {profile.fullName}, {profile.location}. Built with Next.js, hosted on Vercel.
-        </footer>
+          <main id="main">{children}</main>
+          <footer>
+            {profile.fullName}, {profile.location}. Built with Next.js, hosted on Vercel.
+          </footer>
+        </div>
+        <Enhancements />
       </body>
     </html>
   );

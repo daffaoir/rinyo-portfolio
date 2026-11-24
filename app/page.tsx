@@ -1,109 +1,110 @@
 import Link from "next/link";
-import SystemMap from "./system-map";
-import { experience, profile, skills, studies } from "@/lib/content";
+import { experience, facts, profile, skills, studies } from "@/lib/content";
+import SceneArt from "./scenes";
+import { CountUp } from "./interactive";
+
+function initials(name: string) {
+  return name.split(" ").map((w) => w[0]).join("").slice(0, 2);
+}
 
 export default function Home() {
   return (
-    <>
-      <section className="wrap hero">
-        <div>
-          <h1>I connect the systems a business runs on.</h1>
-          <p className="lede">{profile.intro}</p>
-          <p className="avail">
-            <span className="dot" aria-hidden="true" />
-            <span>{profile.availability}</span>
-          </p>
-          <div className="actions">
-            <Link className="btn primary" href="#work">See the work</Link>
-            <Link className="btn" href="/cv">Read my CV</Link>
+    <div className="stack-lg">
+      <header className="intro">
+        <div className="who rise">
+          <div className="photo">
+            {profile.photo
+              ? // eslint-disable-next-line @next/next/no-img-element
+                <img src={profile.photo} alt={profile.name} />
+              : <span aria-hidden="true">{initials(profile.name)}</span>}
+          </div>
+          <div>
+            <h1>{profile.name}</h1>
+            <span className="mono">{profile.role} · {profile.location}</span>
           </div>
         </div>
-        <SystemMap />
-      </section>
-
-      <section className="section" id="work" aria-labelledby="work-title">
-        <div className="wrap">
-          <h2 id="work-title">Work</h2>
-          <p className="sub">Systems in daily use at a tourism destination, a travel agency, a swimming club, and my own products.</p>
-          <ul className="work">
-            {studies.map((s) => (
-              <li key={s.slug}>
-                <Link href={`/work/${s.slug}`}>
-                  <div>
-                    <h3>{s.title}</h3>
-                    <p className="org">{s.org}</p>
-                  </div>
-                  <div>
-                    <p className="sum">{s.summary}</p>
-                    <ul className="stack" aria-label="Tools used">
-                      {s.stack.slice(0, 5).map((t) => <li key={t}>{t}</li>)}
-                    </ul>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <p className="lede rise" style={{ animationDelay: ".08s" }}>
+          {profile.headline} <span>and put <em>AI where it takes real work</em> off people&apos;s hands.</span>
+        </p>
+        <p className="body-text rise" style={{ animationDelay: ".16s" }}>{profile.intro}</p>
+        <p className="status rise" style={{ animationDelay: ".24s" }}>{profile.availability}</p>
+        <div className="cta rise" style={{ animationDelay: ".32s" }}>
+          <a className="primary" href={`mailto:${profile.email}`}>{profile.email}</a>
+          <Link href="/cv">Read my CV</Link>
         </div>
-      </section>
+      </header>
 
-      <section className="section" aria-labelledby="approach-title">
-        <div className="wrap">
-          <h2 id="approach-title">How I work</h2>
-          <div className="approach">
-            <div>
-              <h3>Start where the hours go</h3>
-              <p>I sit with the people doing the work and look for the step they repeat every day. That is usually the first thing worth automating.</p>
-            </div>
-            <div>
-              <h3>Small tools, one front door</h3>
-              <p>Each tool does one job, and they share one sign-in and one source of data, so nobody retypes numbers between systems.</p>
-            </div>
-            <div>
-              <h3>AI where it removes a task</h3>
-              <p>Answering a guest at night, reading a receipt or drafting a report. If the AI does not save someone time, it does not ship.</p>
-            </div>
+      <div className="facts" aria-label="At a glance">
+        {facts.map((f) => (
+          <div key={f.label}>
+            {"value" in f ? <CountUp to={f.value} suffix={f.suffix} /> : <b>{f.text}</b>}
+            <span>{f.label}</span>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
 
-      <section className="section" id="experience" aria-labelledby="exp-title">
-        <div className="wrap">
-          <h2 id="exp-title">Experience</h2>
-          <ol className="timeline">
-            {experience.map((e) => (
-              <li key={e.title}>
-                <span className="when">{e.period}</span>
-                <div>
-                  <h3>{e.title}</h3>
-                  <span className="org">{e.org}</span>
-                  <p>{e.text}</p>
+      <section id="work" aria-labelledby="work-h">
+        <h2 className="eyebrow" id="work-h">Selected work</h2>
+        <div className="cards">
+          {studies.map((s, n) => {
+            const shot = s.screens.find((x) => x.device === "desktop");
+            return (
+              <Link key={s.slug} href={`/work/${s.slug}`} className={n === 0 ? "card wide" : "card"}>
+                <span className="scene" aria-hidden="true">
+                  <SceneArt name={s.scene} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  {shot && <img className="shot" src={shot.src} alt="" loading="lazy" />}
+                </span>
+                <div className="card-body">
+                  <div className="card-meta">
+                    <span className="mono">{s.cardMeta}</span>
+                    {s.status && <span className={s.status === "prototype" ? "tag" : "tag live"}>{s.status}</span>}
+                  </div>
+                  <h3>{s.title}</h3>
+                  <p>{s.summary}</p>
+                  <span className="go">Read case study <b aria-hidden="true">→</b></span>
                 </div>
-              </li>
-            ))}
-          </ol>
-          <dl className="skills">
-            {skills.map((s) => (
-              <div key={s.group} style={{ display: "contents" }}>
-                <dt>{s.group}</dt>
-                <dd>{s.items}</dd>
-              </div>
-            ))}
-          </dl>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
-      <section className="section contact" id="contact" aria-labelledby="contact-title">
-        <div className="wrap">
-          <h2 id="contact-title">Have a process that eats your team&apos;s time?</h2>
-          <p className="sub" style={{ marginTop: "1rem" }}>Tell me how it works today, and I will tell you what I would build.</p>
-          <a className="mail" href={`mailto:${profile.email}`}>{profile.email}</a>
-          <div className="links">
-            <a href={profile.github}>GitHub</a>
-            <a href={profile.linkedin}>LinkedIn</a>
-            <Link href="/cv">CV</Link>
-          </div>
+      <section id="experience" aria-labelledby="exp-h">
+        <h2 className="eyebrow" id="exp-h">Experience</h2>
+        <ul className="rows">
+          {experience.map((e) => (
+            <li key={e.title}>
+              <span className="mono">{e.period}</span>
+              <div><h3>{e.title}</h3><p>{e.org}</p></div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="tools-h">
+        <h2 className="eyebrow" id="tools-h">Toolkit</h2>
+        <dl className="kv">
+          {skills.map((s) => (
+            <div key={s.group} style={{ display: "contents" }}>
+              <dt>{s.group}</dt>
+              <dd>{s.items}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section className="contact" id="contact" aria-labelledby="contact-h">
+        <h2 className="eyebrow" id="contact-h">Contact</h2>
+        <p className="big">Have a process that eats your team&apos;s time? Tell me how it works today.</p>
+        <a className="mail" href={`mailto:${profile.email}`}>{profile.email}</a>
+        <div className="socials">
+          <a href={profile.github}>GitHub</a>
+          <a href={profile.linkedin}>LinkedIn</a>
+          {profile.instagram && <a href={profile.instagram}>Instagram</a>}
+          <Link href="/cv">CV</Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }
