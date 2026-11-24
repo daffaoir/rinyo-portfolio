@@ -1,13 +1,25 @@
 # daffario.dev
 
-Personal portfolio for Daffario Alexandra. Currently a coming-soon placeholder while the full site is being built.
+Personal portfolio of Daffario Alexandra, an IT / AI developer who builds internal systems, automations and practical AI for tourism businesses.
 
 Live at [daffario.dev](https://daffario.dev).
 
+## What's inside
+
+- Home with an interactive map of the systems I built at Wisata Bedengan, case studies, experience and contact.
+- `/work/[slug]`: one page per case study (problem, what I built, result, tools).
+- `/cv`: a printable public CV (no phone number).
+
+All copy lives in `lib/content.ts`, so updating the site means editing one file.
+
 ## Stack
 
-Static HTML/CSS/JS, no build step, deployed on Vercel.
+Next.js 16 (App Router, fully static), React 19, TypeScript, plain CSS. Deployed on Vercel from `master`.
 
 ## Local development
 
-Open `index.html` directly in a browser, or serve the directory with any static file server.
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+```
