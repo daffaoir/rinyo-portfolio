@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
 import "./globals.css";
-import { profile } from "@/lib/content";
-import { Clock, Enhancements, ThemeToggle } from "./interactive";
+import { Enhancements } from "./ui/interactive";
+import { Footer, Nav } from "./ui/chrome";
 
 const sans = Geist({ subsets: ["latin"], variable: "--font-sans" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
@@ -16,6 +15,7 @@ export const metadata: Metadata = {
   title: { default: "Daffario Alexandra, IT / AI developer", template: "%s | Daffario Alexandra" },
   description,
   icons: { icon: "/favicon.svg" },
+  alternates: { canonical: "/", languages: { en: "/", id: "/id" } },
   openGraph: {
     title: "Daffario Alexandra, IT / AI developer",
     description,
@@ -43,21 +43,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
-        <a className="skip" href="#main">Skip to content</a>
         <div className="page">
-          <nav className="top" aria-label="Main">
-            <Link href="/" className="brand">daffario.dev <Clock /></Link>
-            <div className="links">
-              <Link href="/#work">Work</Link>
-              <Link href="/#experience">Experience</Link>
-              <Link href="/cv">CV</Link>
-              <ThemeToggle />
-            </div>
-          </nav>
+          <Nav />
           <main id="main">{children}</main>
-          <footer>
-            {profile.fullName}, {profile.location}. Built with Next.js, hosted on Vercel.
-          </footer>
+          <Footer />
         </div>
         <Enhancements />
       </body>

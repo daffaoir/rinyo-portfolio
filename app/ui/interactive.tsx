@@ -10,7 +10,7 @@ function currentDark() {
   return t ? t === "dark" : systemDark();
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ label = "Switch colour theme" }: { label?: string }) {
   const [dark, setDark] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function ThemeToggle() {
   }
 
   return (
-    <button type="button" className="toggle" onClick={flip} aria-label="Switch colour theme">
+    <button type="button" className="toggle" onClick={flip} aria-label={label}>
       <i aria-hidden="true" />
       <span>{dark === null ? "theme" : dark ? "light" : "dark"}</span>
     </button>
