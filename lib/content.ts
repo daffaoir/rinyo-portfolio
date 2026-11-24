@@ -72,14 +72,14 @@ export const studies: Study[] = [
     scene: "bedengan",
     title: "The whole back office of a nature-tourism destination, behind one sign-in",
     org: "Wisata Bumi Perkemahan Bedengan, Malang",
-    cardMeta: "Wisata Bedengan · Jul – Nov 2026",
+    cardMeta: "Wisata Bedengan · Feb – Nov 2026",
     summary:
       "Sole IT staff for 63 people. Ten services, from ticket counters and accounting to documents, a staff app hub and an AI assistant.",
     intro:
       "A campsite and nature destination with 63 staff ran its ticket counters, rentals, accounting, HR and documents in separate places with separate passwords. As the only IT person, I connected them into one stack.",
     meta: [
       { label: "Role", value: "Sole IT staff" },
-      { label: "Period", value: "Jul – Nov 2026" },
+      { label: "Period", value: "Feb – Nov 2026" },
       { label: "Core live in", value: "Under 3 months" },
       { label: "Users", value: "63 staff" },
     ],
@@ -246,7 +246,7 @@ export const studies: Study[] = [
 ];
 
 export const experience = [
-  { period: "Jul – Nov 2026", title: "IT & systems developer", org: "Wisata Bumi Perkemahan Bedengan, Malang", text: "Sole IT staff. Built and ran every internal system, from sign-in and ERP to the public website." },
+  { period: "Feb – Nov 2026", title: "IT & systems developer", org: "Wisata Bumi Perkemahan Bedengan, Malang", text: "Sole IT staff. Built and ran every internal system, from sign-in and ERP to the public website." },
   { period: "2022 – now", title: "Freelance full-stack developer", org: "Travel agency, swimming club, small businesses", text: "Dashboards, client apps and websites for a travel agency, a swimming club, a construction team and friends' businesses." },
   { period: "2023", title: "Front-end developer intern", org: "PT Aero Systems Indonesia", text: "Front-end interfaces for aviation information systems, four months." },
   { period: "2020 – now", title: "Informatics engineering", org: "Universitas Brawijaya · thesis complete, defense pending", text: "Thesis: a camping-site booking web app." },

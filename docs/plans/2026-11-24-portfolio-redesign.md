@@ -52,7 +52,7 @@ Tidak ditampilkan: Agent Meridian.
 
 ## Acceptance checklist
 - [x] Tidak ada angka atau klaim di situs yang tidak tercantum di tabel fakta atau repo.
-- [x] Experience Bedengan tertulis Jul – Nov 2026.
+- [x] Experience Bedengan tertulis Feb – Nov 2026 (digabung atas permintaan user; ada jeda Apr–Jun).
 - [x] System map tidak ada lagi di build.
 - [x] Toggle tema bekerja dan mengikuti sistem saat belum dipilih.
 - [x] Tiap proyek punya visual beranimasi; animasi berhenti saat `prefers-reduced-motion`.
