@@ -1,6 +1,6 @@
 # Portfolio redesign (daffario.dev) — arah B + struktur A
 
-Status: draft, menunggu persetujuan user. Bahan riset: artifact "Arah Baru daffario.dev".
+Status: diterapkan 2026-11-24 (commit 874d522). Sisa: foto + handle Instagram dari user. Bahan riset: artifact "Arah Baru daffario.dev".
 
 ## Keputusan desain
 - Arah: B (teks dulu, minim dekorasi; rasa Paco Coursey / Emil Kowalski / Karpathy) dengan struktur A untuk daftar Work & Experience (tahun di kiri, isi di kanan).
@@ -51,11 +51,11 @@ Tidak ditampilkan: Agent Meridian.
 7. Sesuaikan `/cv` dengan fakta baru.
 
 ## Acceptance checklist
-- [ ] Tidak ada angka atau klaim di situs yang tidak tercantum di tabel fakta atau repo.
-- [ ] Experience Bedengan tertulis Jul – Nov 2026.
-- [ ] System map tidak ada lagi di build.
-- [ ] Toggle tema bekerja dan mengikuti sistem saat belum dipilih.
-- [ ] Tiap proyek punya visual beranimasi; animasi berhenti saat `prefers-reduced-motion`.
-- [ ] Halaman depan hanya 5 kartu proyek; layanan Bedengan hanya di halaman detailnya.
-- [ ] Dicek di 1280px dan 375px, terang dan gelap, dengan screenshot.
-- [ ] `npm run build` lulus; deploy Vercel live.
+- [x] Tidak ada angka atau klaim di situs yang tidak tercantum di tabel fakta atau repo.
+- [x] Experience Bedengan tertulis Jul – Nov 2026.
+- [x] System map tidak ada lagi di build.
+- [x] Toggle tema bekerja dan mengikuti sistem saat belum dipilih.
+- [x] Tiap proyek punya visual beranimasi; animasi berhenti saat `prefers-reduced-motion`.
+- [x] Halaman depan hanya 5 kartu proyek; layanan Bedengan hanya di halaman detailnya.
+- [x] Dicek di 1280px dan 375px, terang dan gelap, dengan screenshot.
+- [x] `npm run build` lulus; deploy Vercel live.
